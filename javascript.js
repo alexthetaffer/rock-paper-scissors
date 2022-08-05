@@ -66,8 +66,8 @@ function game() {
             playerScore++;
         } else if (round.includes("loose")) {
             computerScore++;
-        } else {
-            i--; // Play one more game if a tie or player provides wrong input
+        } else if (round.includes("Please")) {
+            i--; // Add iteration if player provides wrong input
         }
     }
 
