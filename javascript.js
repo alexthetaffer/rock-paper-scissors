@@ -50,3 +50,33 @@ function playRound(playerSelection, computerSelection) {
         return ("Something's gone wrong");
     }
 }
+
+function game() {
+
+    let playerScore = 0;
+    let computerScore = 0;
+
+    // Iterate for 5 rounds
+    for (i = 0; i < 5; i++) {
+        const playerSelection = prompt("Choose you weapon");
+        const round = playRound(playerSelection, getComputerChoice());
+        console.log(round);
+
+        if (round.includes("win")) {
+            playerScore++;
+        } else if (round.includes("loose")) {
+            computerScore++;
+        }
+    }
+
+    //Print winner
+    if (playerScore > computerScore) {
+        console.log(`You win with a score of ${playerScore} to ${computerScore}!`);
+    } else if (computerScore > playerScore) {
+        console.log(`You loose with a score of ${computerScore} to ${playerScore}!`);
+    } else {
+        console.log("It's a tie!");
+    }
+}
+
+game();
