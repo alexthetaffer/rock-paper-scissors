@@ -47,7 +47,7 @@ function playRound(playerSelection, computerSelection) {
             return ("A tie!");
         }
     } else {
-        return ("Something's gone wrong");
+        return ("Please, choose Rock Paper or Scissors");
     }
 }
 
@@ -66,6 +66,8 @@ function game() {
             playerScore++;
         } else if (round.includes("loose")) {
             computerScore++;
+        } else {
+            i--; // Don't count loop if player types wrong input
         }
     }
 
