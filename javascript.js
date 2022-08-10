@@ -16,8 +16,22 @@ weapons.forEach(weapon => {
             roundInfo.style.color = 'var(--accent)';
         } else if (msg.includes('win')) {
             roundInfo.style.color = 'green';
+            playerScore++;
         } else {
             roundInfo.style.color = 'red';
+            computerScore++;
+        }
+
+        score.textContent = `${playerScore}:${computerScore}`;
+        // Change score-board color
+        if (playerScore > computerScore) score.style.color = 'green';
+        else if (computerScore > playerScore) score.style.color = 'red';
+        else score.style.color = 'orange';
+
+        if(playerScore >= 5) {
+            roundInfo.textContent = "Congratulations! You win the game"
+        } else if (computerScore >= 5) {
+            roundInfo.textContent = "You loose the game. What a failure"
         }
     })
 })
