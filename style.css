@@ -43,9 +43,6 @@ h1 {
     gap: 80px;
 }
 
-.text-upper, .round-info {
-}
-
 .text-upper {
     font-size: 44px;
     color: #333333;
@@ -54,11 +51,11 @@ h1 {
 .round-info {
     font-size: 24px;
     font-weight: bold;
-    color: var(--accent);
+    color: gray;
 }
 
 .score {
-    color: var(--accent);
+    color: gray;
     font-size: 68px;
     /* font-weight: bold; */
 }

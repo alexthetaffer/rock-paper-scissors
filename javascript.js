@@ -1,4 +1,27 @@
 
+let playerScore = 0;
+let computerScore = 0;
+const roundInfo = document.querySelector('.round-info');
+const score = document.querySelector('.score');
+
+const weapons = document.querySelectorAll('.weapon');
+weapons.forEach(weapon => {
+    weapon.addEventListener('click', () => {
+        const computerChoice = getComputerChoice()
+        const msg = playRound(weapon.id, computerChoice);
+
+        roundInfo.textContent = msg;
+        
+        if (weapon.id === computerChoice) {
+            roundInfo.style.color = 'var(--accent)';
+        } else if (msg.includes('win')) {
+            roundInfo.style.color = 'green';
+        } else {
+            roundInfo.style.color = 'red';
+        }
+    })
+})
+
 function getComputerChoice() {
 
     // Generate random number [0..2]
@@ -22,27 +45,27 @@ function playRound(playerSelection, computerSelection) {
     // Player chooses rock
     if (playerSelection === 'rock') {
         if (computerSelection === 'paper') {
-            return ("You loose! Paper beats rock");
+            return ("You loose! Paper stabs rock");
         } else if (computerSelection === 'scissors') {
-            return ("You win! Rock beats scissors");
+            return ("You win! Rock breakes scissors");
         } else {
             return ("A tie!");
         }
     // Player chooses paper
     } else if (playerSelection === 'paper') {
         if (computerSelection === 'rock') {
-            return ("You win! Paper beats rock");
+            return ("You win! Paper stabs rock");
         } else if (computerSelection === 'scissors') {
-            return ("You loose! Scissors beat paper");
+            return ("You loose! Scissors cut paper");
         } else {
             return ("A tie!");
         }
     // Player chooses scissors
     } else if (playerSelection === 'scissors') {
         if (computerSelection === 'rock') {
-            return ("You loose! Rock beats scissors");
+            return ("You loose! Rock breakes scissors");
         } else if (computerSelection === 'paper') {
-            return ("You win! Scissors beat paper")
+            return ("You win! Scissors cut paper")
         } else {
             return ("A tie!");
         }
@@ -50,35 +73,3 @@ function playRound(playerSelection, computerSelection) {
         return ("Please, choose Rock Paper or Scissors");
     }
 }
-
-function game() {
-
-    let playerScore = 0;
-    let computerScore = 0;
-
-    // Iterate for 5 rounds
-    for (i = 0; i < 5; i++) {
-        const playerSelection = prompt("Choose you weapon");
-        const round = playRound(playerSelection, getComputerChoice());
-        console.log(round);
-
-        if (round.includes("win")) {
-            playerScore++;
-        } else if (round.includes("loose")) {
-            computerScore++;
-        } else if (round.includes("Please")) {
-            i--; // Add iteration if player provides wrong input
-        }
-    }
-
-    //Print winner
-    if (playerScore > computerScore) {
-        console.log(`You win with a score of ${playerScore} to ${computerScore}!`);
-    } else if (computerScore > playerScore) {
-        console.log(`You loose with a score of ${computerScore} to ${playerScore}!`);
-    } else {
-        console.log("It's a tie!");
-    }
-}
-
-//game();
