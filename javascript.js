@@ -7,6 +7,12 @@ const score = document.querySelector('.score');
 const weapons = document.querySelectorAll('.weapon');
 weapons.forEach(weapon => {
     weapon.addEventListener('click', () => {
+
+        if (computerScore >= 5 || playerScore >= 5) {
+            resetGame();
+            return;
+        }
+
         const computerChoice = getComputerChoice()
         const msg = playRound(weapon.id, computerChoice);
 
@@ -27,14 +33,25 @@ weapons.forEach(weapon => {
         if (playerScore > computerScore) score.style.color = 'green';
         else if (computerScore > playerScore) score.style.color = 'red';
         else score.style.color = 'orange';
-
+        
+        // Print winner
         if(playerScore >= 5) {
-            roundInfo.textContent = "Congratulations! You win the game"
+            roundInfo.textContent = "Congratulations! You win the game";
+            
         } else if (computerScore >= 5) {
-            roundInfo.textContent = "You loose the game. What a failure"
+            roundInfo.textContent = "You loose the game. What a failure";
         }
     })
 })
+
+function resetGame() {
+    playerScore = 0;
+    computerScore = 0;
+    score.style.color = 'gray';
+    score.textContent = '0:0';
+    roundInfo.style.color = 'gray';
+    roundInfo.textContent = 'Choose a weapon to start new game';
+}
 
 function getComputerChoice() {
 
